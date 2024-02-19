@@ -1,5 +1,6 @@
 package com.example.spring_17.util;
 
+import com.example.spring_17.TestConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Класс QuestionWithAnswersUtil")
-@SpringBootTest
+@SpringBootTest(classes = TestConfiguration.class)
 class QuestionWithAnswersUtilTest {
 
     @DisplayName("Должен формировать вопрос с ответами из csv-строки")
@@ -58,9 +59,5 @@ class QuestionWithAnswersUtilTest {
                 Arguments.of("noAnswerNum"),
                 Arguments.of("3,invalidAnswerNum,invalidAnswerNum")
         );
-    }
-
-    @org.springframework.context.annotation.Configuration
-    static class Configuration {
     }
 }

@@ -1,6 +1,7 @@
 package com.example.spring_17.service.question;
 
 
+import com.example.spring_17.TestConfiguration;
 import com.example.spring_17.config.QuestionConfig;
 import com.example.spring_17.dao.QuestionDao;
 import com.example.spring_17.domain.QuestionWithAnswers;
@@ -9,11 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -31,16 +31,16 @@ import static org.mockito.Mockito.when;
 
 @DisplayName("Класс QuestionServiceImpl")
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
+@SpringBootTest(classes = TestConfiguration.class)
 class QuestionServiceImplTest {
 
-    @MockBean
+    @Mock
     private QuestionDao questionDao;
 
     @Autowired
     private QuestionConfig questionConfig;
 
-    @MockBean
+    @Mock
     private InputOutputService inputOutputService;
 
     private QuestionServiceImpl sut;
@@ -111,16 +111,5 @@ class QuestionServiceImplTest {
                 Map.of(enLocale, "answer1", ruLocale, "ответ1"),
                 Arrays.asList(Map.of(enLocale, "answer1", ruLocale, "ответ1"),
                         Map.of(enLocale, "answer2", ruLocale, "ответ2")));
-    }
-
-    @org.springframework.context.annotation.Configuration
-    static class Configuration {
-        @Bean
-        QuestionConfig questionConfig() {
-            var questionConfig = new QuestionConfig();
-            questionConfig.setNumber(1);
-            questionConfig.setPath("/example.csv");
-            return questionConfig;
-        }
     }
 }

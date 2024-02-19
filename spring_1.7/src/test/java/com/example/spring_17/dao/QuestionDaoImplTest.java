@@ -1,6 +1,7 @@
 package com.example.spring_17.dao;
 
 
+import com.example.spring_17.TestConfiguration;
 import com.example.spring_17.config.QuestionConfig;
 import com.example.spring_17.domain.QuestionWithAnswers;
 import org.assertj.core.api.Assertions;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
 @DisplayName("Класс QuestionDaoImpl")
-@SpringBootTest
+@SpringBootTest(classes = TestConfiguration.class)
 class QuestionDaoImplTest {
 
     @Autowired
@@ -68,16 +68,5 @@ class QuestionDaoImplTest {
 
         //then
         assertEquals(sut.getAllQuestions().size(), 2);
-    }
-
-    @org.springframework.context.annotation.Configuration
-    static class Configuration {
-        @Bean
-        QuestionConfig questionConfig() {
-            var questionConfig = new QuestionConfig();
-            questionConfig.setNumber(1);
-            questionConfig.setPath("/example.csv");
-            return questionConfig;
-        }
     }
 }

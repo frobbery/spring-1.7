@@ -1,5 +1,6 @@
 package com.example.spring_17.domain;
 
+import com.example.spring_17.TestConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Класс QuestionWithAnswers")
-@SpringBootTest
+@SpringBootTest(classes = TestConfiguration.class)
 class QuestionWithAnswersTest {
 
     private final static Locale EN_LOCALE = new Locale("en");
@@ -88,9 +89,5 @@ class QuestionWithAnswersTest {
                 Arguments.of("ответ2", RU_LOCALE, false),
                 Arguments.of("answer1", RU_LOCALE, false)
         );
-    }
-
-    @org.springframework.context.annotation.Configuration
-    static class Configuration {
     }
 }

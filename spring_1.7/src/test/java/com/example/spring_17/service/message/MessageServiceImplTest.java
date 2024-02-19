@@ -1,5 +1,6 @@
 package com.example.spring_17.service.message;
 
+import com.example.spring_17.TestConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 @DisplayName("Класс MessageServiceImpl")
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
+@SpringBootTest(classes = TestConfiguration.class)
 class MessageServiceImplTest {
 
     @MockBean
@@ -152,9 +153,5 @@ class MessageServiceImplTest {
 
     private static Locale locale() {
         return Locale.ENGLISH;
-    }
-
-    @org.springframework.context.annotation.Configuration
-    static class Configuration {
     }
 }

@@ -1,16 +1,17 @@
 package com.example.spring_17.service.input_output;
 
 
+import com.example.spring_17.TestConfiguration;
 import com.example.spring_17.domain.QuestionWithAnswers;
 import com.example.spring_17.service.message.MessageService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
@@ -23,10 +24,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
+@SpringBootTest(classes = TestConfiguration.class)
 class InputOutputServiceImplTest {
 
-    @MockBean
+    @Mock
     private MessageService messageService;
 
     private InputOutputServiceImpl sut;
